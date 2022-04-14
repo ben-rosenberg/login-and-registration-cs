@@ -1,0 +1,23 @@
+@model User
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1 class="text-center">Welcome @Model.FirstName</h1>
+<div class="card">
+    <div class="card-body">
+        <h3>@Model.FirstName's Profile Info</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+            <tr>
+                <td>@Model.FirstName</td>
+                <td>@Model.LastName</td>
+                <td>@Model.Email</td>
+            </tr>
+        </table>
+    </div>
+</div>
