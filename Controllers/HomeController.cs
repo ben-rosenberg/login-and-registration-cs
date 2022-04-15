@@ -39,12 +39,6 @@ namespace LoginAndRegistration.Controllers
                 return View("Index");
             }
 
-            if (_db.Users.Any(u => u.Email == user.Email))
-            {
-                ModelState.AddModelError("Email", "Email already taken");
-                return View("Index");
-            }
-
             PasswordHasher<User> passwordHasher = new PasswordHasher<User>();
             user.Password = passwordHasher.HashPassword(user, user.Password);
 

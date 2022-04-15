@@ -24,6 +24,7 @@ namespace LoginAndRegistration.Models
 
         [Required]
         [EmailAddress]
+        [NewEmail]
         public string Email { get; set; }
 
         [Required]
@@ -41,20 +42,20 @@ namespace LoginAndRegistration.Models
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
 
-    /* public class NewEmailAttribute : ValidationAttribute
+    public class NewEmailAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            //User user = _db.Users.FirstOrDefault(u => u.Email == (string)value);
+            LoginAndRegistrationContext db = (LoginAndRegistrationContext)validationContext.GetService(typeof(LoginAndRegistrationContext));
+
+            User user = db.Users.FirstOrDefault(u => u.Email == (string)value);
             
-            if ((string)validationContext.Items["Email"] == (string)value)
+            if (user != null)
             {
                 return new ValidationResult("Email already taken");
             }
 
             return ValidationResult.Success;
         }
-
-        private string _Email { get; set; }
-    } */
+    }
 }
